@@ -628,59 +628,53 @@ export class WeatherRadarCard extends LitElement implements LovelaceCard {
   get styles(): CSSResult {
     return css`
       .text-container {
-        font: 12px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
-      }
-      #timestamp {
-        margin: 2px 0px;
-      }
-      #color-bar {
-        margin: 0px 0px;
-      }
-      ha-card {
-        overflow: hidden;
-      }
-      #root {
-        width: 100%;
-        position: relative;
-      }
-      iframe {
-        position: absolute;
-        border: none;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-      }
-      #card-title {
-        margin: 8px 0px 4px 8px;
-        font-size: 1.5em;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      .text-container {
-        font: 12px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        margin: 0px 2.5px 0px 10px;
-      }
-      .text-container-small {
-        font: 10px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        margin: 0px 10px 0px 2.5px;
-      }
-      .light-links a {
-        color: blue;
-      }
-      .dark-links a {
-        color: steelblue;
-      }
-      #timestamp {
-        font: 14px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        margin: 0px 0px;
-        padding-top: 5px;
-      }
-      #color-bar {
-        margin: 0px 0px;
-      }
+      font: 12px/1.5 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+
+    .timestamp {
+      margin: 2px 0;
+    }
+
+    .color-bar {
+      margin: 0;
+    }
+
+    .ha-card {
+      overflow: hidden;
+    }
+
+    .root {
+      width: 100%;
+      position: relative;
+      padding-top: var(--radar-height);
+    }
+
+    .radar-iframe {
+      position: absolute;
+      border: none;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .card-title {
+      margin: 8px 0 4px 8px;
+      font-size: 1.5em;
+    }
+
+    /* Dynamic states */
+    :host(.panel-mode) {
+      --radar-height: calc(100vh - 48px - 2px);
+    }
+
+    :host(.panel-mode.edit-mode) {
+      --radar-height: calc(100vh - 48px - 2px - 59px);
+    }
+
+    :host(.square-map) {
+      --radar-height: var(--card-width);
+    }
     `;
   }
 }
